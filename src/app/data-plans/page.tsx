@@ -20,7 +20,7 @@ const DataPlans = () => {
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 3,
-      duration_unit: "DAYS",
+      duration_unit: "days",
       data: 1,
       data_unit: "GB",
       price: 6.0,
@@ -31,8 +31,8 @@ const DataPlans = () => {
       id: "69YtBXSZ2pP1jm1aR3Qo0A5g7Lbud123FBShHmFR2f02qo=",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
-      duration: 30,
-      duration_unit: "DAYS",
+      duration: 14,
+      duration_unit: "days",
       data: 3,
       data_unit: "GB",
       price: 12.0,
@@ -43,8 +43,8 @@ const DataPlans = () => {
       id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
-      duration: 30,
-      duration_unit: "DAYS",
+      duration: 14,
+      duration_unit: "days",
       data: 5,
       data_unit: "GB",
       price: 20.0,
@@ -102,13 +102,15 @@ const DataPlans = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex-3 text-base font-medium text-[#212121]">
+                <div className="flex-3 text-base font-medium text-[#212121] leading-[164%]">
                   {prod.data} {prod.data_unit}
-                  <p className="text-base text-[#212121]">
+                  <p className="text-base text-[#212121] leading-[164%] font-normal">
                     {prod.duration} {prod.duration_unit}
                   </p>
                 </div>
-                <p className="flex-1 text-lg font-semibold">${prod.price}</p>
+                <p className="flex-1 text-base leading-[164%] font-medium">
+                  ${prod.price}
+                </p>
               </div>
             ))}
           </div>

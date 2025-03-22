@@ -32,7 +32,7 @@ const Purchase = () => {
   const paymentMethods = [
     {
       id: "credit-card",
-      label: "Credit Card",
+      label: "Credit/Debit Card",
       img: "/assets/kenya/kaa/credit-card.png",
       disabled: false,
     },
@@ -40,19 +40,19 @@ const Purchase = () => {
       id: "paypal",
       label: "PayPal",
       img: "/assets/kenya/kaa/paypal.png",
-      disabled: true,
+      disabled: false,
     },
     {
       id: "apple-pay",
       label: "Apple Pay",
       img: "/assets/kenya/kaa/apple-pay.png",
-      disabled: true,
+      disabled: false,
     },
     {
       id: "google-pay",
       label: "Google Pay",
       img: "/assets/kenya/kaa/google-pay.png",
-      disabled: true,
+      disabled: false,
     },
   ];
 
@@ -63,8 +63,8 @@ const Purchase = () => {
         <h1 className="text-2xl font-semibold mb-6 text-[#212121] leading-[100%]">
           Payment
         </h1>
-        <h2 className="text-lg font-medium text-[#212121] leading-[100%]">
-          Cart Summary
+        <h2 className="text-lg font-semibold text-[#212121] leading-[164%]">
+          Order Summary
         </h2>
         <div className="border-b-2 border-[#EFEFEF] pb-4 font-medium mb-4 mt-3">
           <div className="flex justify-between">
@@ -72,13 +72,17 @@ const Purchase = () => {
               {product.data} {product.data_unit} ({product.duration}{" "}
               {product.duration_unit})
             </p>
-            <p className="font-medium leading-[164%] text-[#212121]">
+            <p className="font-medium text-base leading-[164%] text-[#212121]">
               ${product.price}
             </p>
           </div>
           <div className="flex justify-between text-[#212121]">
-            <p>Tax</p>
-            <p>${(product.price * 0.15).toFixed(2)}</p>
+            <p className="text-base font-normal leading-[164%] text-[#212121]">
+              Tax
+            </p>
+            <p className="font-medium text-base leading-[164%] text-[#212121]">
+              ${(product.price * 0.15).toFixed(2)}
+            </p>
           </div>
           <div className="flex justify-between font-semibold text-lg text-[#00539B] mt-2">
             <p>Total</p>
@@ -106,9 +110,9 @@ const Purchase = () => {
                 className="hidden"
                 onChange={() => setSelectedPayment(method.id)}
               />
-              <div className="w-5 h-5 rounded-full border flex items-center justify-center mr-4">
+              <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center mr-4">
                 {selectedPayment === method.id && (
-                  <div className="w-3 h-3 bg-[#00539B] rounded-full"></div>
+                  <div className="w-[10px] h-[10px] bg-[#00539B] rounded-full"></div>
                 )}
               </div>
               <Image
@@ -118,7 +122,9 @@ const Purchase = () => {
                 height={40}
                 className="mr-3"
               />
-              <p className="text-[#212121] text-base">{method.label}</p>
+              <p className="text-[#212121] text-base leading-[164%]">
+                {method.label}
+              </p>
             </label>
           ))}
         </div>
