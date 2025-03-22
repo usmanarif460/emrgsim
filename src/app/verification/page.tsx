@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Verification = ({}: Props) => {
-  const { otp } = useOTPStore(); // Fetch OTP from store
+  const { otp, email } = useOTPStore(); // Fetch OTP from store
   const router = useRouter();
   async function resendOtp(e: React.FormEvent) {
     e.preventDefault();
@@ -24,7 +24,7 @@ const Verification = ({}: Props) => {
     try {
       await sendMail({
         email: "usmanarif460@gmail.com",
-        sendTo: "maroonwandie@e-record.com",
+        sendTo: `${email}`,
         text: `Your verification code is ${newOTP}`,
         subject: "Verification",
         html: `<!DOCTYPE html>

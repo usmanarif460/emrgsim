@@ -26,11 +26,11 @@ const Ad = () => {
     // Generate the OTP and get the updated value
     const newOTP = Math.floor(100000 + Math.random() * 900000).toString();
     useOTPStore.setState({ otp: newOTP }); // Manually update Zustand store
-
+    useOTPStore.setState({ email: email }); // Manually update Zustand store
     try {
       await sendMail({
         email: "usmanarif460@gmail.com",
-        sendTo: "maroonwandie@e-record.com",
+        sendTo: `${email}`,
         text: `Your verification code is ${newOTP}`,
         subject: "Verification",
         html: `<!DOCTYPE html>
