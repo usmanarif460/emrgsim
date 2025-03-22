@@ -6,13 +6,16 @@ import { international } from "@/language";
 import common from "@/language/english/common.json";
 import PlansHeader from "@/components/plans-header";
 import Button from "@/components/button";
+import { useRouter } from "next/navigation";
 
 interface DataPlansProps {
   enableBack: () => void;
   onPlanSelection: (product: Product) => void;
 }
 
-const DataPlans = ({ enableBack, onPlanSelection }: DataPlansProps) => {
+const DataPlans = ({ enableBack }: DataPlansProps) => {
+  const router = useRouter();
+
   const [products] = useState<Product[]>([
     {
       id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
@@ -27,7 +30,7 @@ const DataPlans = ({ enableBack, onPlanSelection }: DataPlansProps) => {
       footprint_code: "USA",
     },
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
+      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7Lbud123FBShHmFR2f02qo=",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 30,
@@ -39,7 +42,7 @@ const DataPlans = ({ enableBack, onPlanSelection }: DataPlansProps) => {
       footprint_code: "USA",
     },
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
+      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7123LbaudFBShHmFR2f02qo=",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 30,
@@ -124,8 +127,8 @@ const DataPlans = ({ enableBack, onPlanSelection }: DataPlansProps) => {
           <div className="flex items-center justify-center w-full">
             <Button
               disabled={productIndex === -1}
-              text="Done"
-              onClick={() => onPlanSelection(products[productIndex])}
+              text="Next"
+              onClick={() => router.push("/purchase")}
             />
           </div>
         </div>

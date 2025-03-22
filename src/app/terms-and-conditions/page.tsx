@@ -2,17 +2,15 @@
 import Button from "@/components/button";
 import HeaderTerms from "@/components/header-small";
 import { useEffect, useRef, useState } from "react";
-
-type Props = {
-  next: () => void;
-};
+import { useRouter } from "next/navigation";
 
 type CanvasPosition = {
   x: number;
   y: number;
 };
 
-const TermsAndConditions = (props: Props) => {
+const TermsAndConditions = () => {
+  const router = useRouter();
   const canvas = useRef<HTMLCanvasElement | null>(null);
   const [currentPosition, setCurrentPosition] = useState<CanvasPosition | null>(
     null
@@ -181,16 +179,21 @@ const TermsAndConditions = (props: Props) => {
             onTouchMove={(ev) => draw(getCanvasPoint(touchPosition(ev)))}
           />
           <p
-            className="absolute bottom-[100px] right-6 text-gray-700 font-medium text-lg cursor-pointer"
+            className="absolute bottom-[100px] right-6 text-[#212121]  font-medium text-lg cursor-pointer"
             onClick={() => canvas.current && clearCanvas(canvas.current)}
           >
             Clear
           </p>
         </div>
         <div className="w-full flex flex-col items-center mt-4">
-          <Button text="Accept & Sign" onClick={props.next} />
+          <Button
+            text="Accept & Sign"
+            onClick={() => router.push("/data-plans")}
+          />
         </div>
-        <p className="mt-4 text-red-500 cursor-pointer">I disagree</p>
+        <p className="mt-4 text-[#212121] font-medium text-base cursor-pointer">
+          I disagree
+        </p>
       </div>
     </div>
   );

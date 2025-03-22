@@ -1,20 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Header from "@/components/header";
 import ChoiceButton from "../../components/choice-button";
 import Button from "@/components/button";
-
-// type Props = {
-//   createAccount: () => void;
-// };
 
 const Ad = () => {
   const [selected, setSelected] = useState<null | "selected_1" | "selected_2">(
     null
   );
-  // const router = useRouter();
+  const router = useRouter();
   const dollar = `<svg
       width="47"
       height="48"
@@ -52,7 +48,7 @@ const Ad = () => {
     </svg>`;
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // router.push("/verification");
+    router.push("/verification");
   }
 
   return (

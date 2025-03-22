@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
+import { useRouter } from "next/navigation";
 
 interface Props {
   eid: string;
@@ -11,9 +12,9 @@ interface Props {
   next: () => void;
 }
 
-const Thanks: React.FC<Props> = ({ eid, product, pId, next }) => {
+const Thanks: React.FC<Props> = ({ eid, product, pId }) => {
   const [timeoutCount, setTimeoutCount] = useState(0);
-
+  const router = useRouter();
   const sendEID = (bypass?: boolean) => {
     if (!product || !product.id) {
       console.warn("Product ID is not defined");
@@ -84,7 +85,7 @@ const Thanks: React.FC<Props> = ({ eid, product, pId, next }) => {
     <div className="w-full h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center">
       <Header className="absolute top-0 " />
       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-        <div className="bg-white rounded-2xl -mt-32 w-[309px] h-[483px] flex flex-col items-center p-4">
+        <div className="bg-white rounded-2xl -mt-32 w-[309px] h-[450px] flex flex-col items-center ">
           <div className="bg-[#d6e8eb] w-full h-[222px] rounded-t-2xl flex justify-center items-center">
             <Image
               src="/assets/saudi/success.png"
@@ -94,7 +95,7 @@ const Thanks: React.FC<Props> = ({ eid, product, pId, next }) => {
               className="w-full h-full rounded-t-2xl"
             />
           </div>
-          <div className="flex flex-col items-center text-center gap-2 w-full p-4">
+          <div className="flex p-4 flex-col items-center text-center gap-2 w-full ">
             <h3 className="text-2xl font-medium">Success</h3>
             <p className="text-base text-gray-700">
               Your eSIM is ready. Please click the link below to install it.
@@ -102,7 +103,7 @@ const Thanks: React.FC<Props> = ({ eid, product, pId, next }) => {
 
             <button
               type="button"
-              onClick={next}
+              onClick={() => router.push("/profile")}
               className="bg-[#00539B] w-full text-white py-4 px-4 text-lg font-semibold rounded-2xl mt-4 hover:bg-blue-600"
             >
               Install eSIM

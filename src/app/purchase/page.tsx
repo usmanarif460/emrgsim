@@ -5,7 +5,7 @@ import Image from "next/image";
 import Product from "../../types/product";
 import PurchaseHeader from "@/components/header-purchase";
 import Button from "@/components/button";
-
+import { useRouter } from "next/navigation";
 type Props = {
   enabledBack: () => void;
   product?: Product;
@@ -30,6 +30,7 @@ const Purchase = ({
   product = defaultProduct,
   onPurchase,
 }: Props) => {
+  const router = useRouter();
   useEffect(() => {
     document.title = "Purchase";
     if (typeof enabledBack === "function") {
@@ -211,10 +212,7 @@ const Purchase = ({
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Button
-                  text="Submit Payment"
-                  onClick={() => console.log("I am clicked")}
-                />
+                <Button text="Submit" onClick={() => router.push("/thanks")} />
               </div>
             </div>
           </form>

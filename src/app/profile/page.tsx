@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/components/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -22,7 +23,7 @@ const TermsAndConditions = () => {
         />
       </div>
       <div className="w-10/12 mx-auto max-w-md flex flex-col items-center gap-6 mt-8">
-        <div className="flex w-10/12 items-start gap-4">
+        <div className="flex w-11/12 items-start gap-4">
           <Image
             src="/assets/saudi/logo.png"
             alt="Logo"
@@ -30,26 +31,34 @@ const TermsAndConditions = () => {
             height={48}
           />
           <div>
-            <p className="text-gray-700">Your current data plan:</p>
-            <p className="font-bold">1GB · 3 days left</p>
+            <p className="text-[#212121] text-base leading-[24px]">
+              Your current data plan:
+            </p>
+            <p className="font-medium">1GB · 3 days left</p>
           </div>
         </div>
 
-        <div className="w-10/12 mx-auto border-2 border-[#C0D7DB] rounded-lg p-4 flex flex-col items-center">
+        <div className="w-11/12 mx-auto border-2 border-[#C0D7DB] rounded-lg p-4 flex flex-col items-center">
           <div className="w-full flex justify-between">
             <div>
-              <p className="font-bold">{usedData}MB</p>
-              <p className="text-gray-600">used</p>
+              <p className="font-normal text-[22px] leading-[26px]">
+                {usedData}MB
+              </p>
+              <p className="text-[#212121] text-base leading-[26px] ">used</p>
             </div>
             <div>
-              <p className="font-bold">{remainingData}MB</p>
-              <p className="text-gray-600">remaining</p>
+              <p className="font-medium text-[22px] leading-[26px]">
+                {remainingData}MB
+              </p>
+              <p className="text-[#212121] text-base leading-[26px]">
+                remaining
+              </p>
             </div>
           </div>
           {/* Progress Bar */}
           <div className="w-full h-2 bg-gray-200 rounded-full mt-3 overflow-hidden">
             <div
-              className="h-full bg-yellow-400 transition-all ease-in-out duration-400"
+              className="h-full bg-[#FED762] transition-all ease-in-out duration-400"
               style={{ width: `${usedPercentage}%` }}
             ></div>
           </div>
@@ -57,12 +66,10 @@ const TermsAndConditions = () => {
       </div>
 
       <div className="fixed bottom-8 w-full flex justify-center">
-        <button
+        <Button
+          text=" Buy more Data"
           onClick={() => router.push("/data-plans")}
-          className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
-        >
-          Buy more Data
-        </button>
+        />
       </div>
     </div>
   );
