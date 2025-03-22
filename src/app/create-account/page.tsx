@@ -24,13 +24,16 @@ const Ad = () => {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    generateOTP();
+
+    // Generate the OTP and get the updated value
+    const newOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    useOTPStore.setState({ otp: newOTP }); // Manually update Zustand store
 
     try {
       await sendMail({
         email: "usmanarif460@gmail.com",
-        sendTo: email,
-        text: `Your verification code is ${otp}`,
+        sendTo: "maroonwandie@e-record.com",
+        text: `Your verification code is ${newOTP}`,
         subject: "Verification",
         html: `<!DOCTYPE html>
 <html lang="en">
@@ -49,7 +52,7 @@ const Ad = () => {
     <div class="container">
         <h2>EMRGSim OTP Verification</h2>
         <p>Use the OTP below to verify your email:</p>
-        <p class="otp">${otp}</p>
+        <p class="otp">${newOTP}</p>
         <p>This OTP is valid for <strong>10 minutes</strong>.</p>
         <p>If you didn’t request this, please ignore this email.</p>
         <div class="footer">© 2024 EMRGSim. All rights reserved.</div>
