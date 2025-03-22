@@ -15,8 +15,6 @@ const Ad = () => {
   const [selected, setSelected] = useState<null | "selected_1" | "selected_2">(
     null
   );
-  const { otp, generateOTP } = useOTPStore();
-
   const [email, setEmail] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
