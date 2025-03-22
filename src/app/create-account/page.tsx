@@ -73,7 +73,7 @@ const Ad = () => {
     <div className="container w-full h-screen bg-white overflow-y-auto">
       <Header />
       <div className="content py-[32px] px-[24px] h-auto">
-        <h1 className="text-3xl font-medium mb-4">
+        <h1 className="text-3xl font-medium leading-[100%] mb-4 w-10/12">
           Cheap data bundles in minutes
         </h1>
         <p className="text-base mb-6">
@@ -102,7 +102,7 @@ const Ad = () => {
               your data
             </p>
             <div className="mb-10">
-              <div className=" grid pt-[24px]">
+              <div className="grid pt-[24px]">
                 <label
                   htmlFor="firstName"
                   className="font-bold text-sm leading-[26px] text-[#00539b]"
@@ -112,7 +112,7 @@ const Ad = () => {
 
                 <input
                   name="first-name"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px]  border-b border-[#e6e6e6]"
+                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6]"
                   id="firstName"
                   required
                 />
@@ -127,7 +127,7 @@ const Ad = () => {
                 <input
                   name="last-name"
                   id="lastName"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px]  border-b border-[#e6e6e6]"
+                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6]"
                   required
                 />
               </div>
@@ -142,7 +142,7 @@ const Ad = () => {
                   id="email"
                   name="email"
                   type="email"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px]  border-b border-[#e6e6e6]"
+                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6]"
                   placeholder=""
                   required
                   value={email}
@@ -159,7 +159,7 @@ const Ad = () => {
                 <input
                   name="eVisaNumber"
                   id="eVisaNumber"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px]  border-b border-[#e6e6e6]"
+                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6]"
                   required
                 />
               </div>

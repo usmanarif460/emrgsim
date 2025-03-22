@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const Page = () => {
   const router = useRouter();
   return (
-    <div className="bg-[#00539B] h-screen flex flex-col items-center gap-2 justify-center">
+    <div className="bg-[#00539bed] h-screen flex flex-col items-center gap-2 justify-center">
       <div
         onClick={() => router.push("/create-account")}
         className="cursor-pointer"
