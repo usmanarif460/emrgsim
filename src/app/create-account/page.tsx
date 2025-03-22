@@ -6,11 +6,11 @@ import Header from "@/components/header";
 import ChoiceButton from "../../components/choice-button";
 import Button from "@/components/button";
 
-type Props = {
-  createAccount: () => void;
-};
+// type Props = {
+//   createAccount: () => void;
+// };
 
-const Ad = (props: Props) => {
+const Ad = () => {
   const [selected, setSelected] = useState<null | "selected_1" | "selected_2">(
     null
   );
