@@ -1,13 +1,13 @@
-enum DURATION {
-    DAYS = 'DAYS',
-    MONTH = 'MONTH',
-    MONTHS = 'MONTHS'
-}
+// enum DURATION {
+//     DAYS = 'DAYS',
+//     MONTH = 'MONTH',
+//     MONTHS = 'MONTHS'
+// }
 
-enum SIM_TYPE {
-    ESIM = 'ESIM',
-    PSIM = 'PSIM'
-}
+// enum SIM_TYPE {
+//     ESIM = 'ESIM',
+//     PSIM = 'PSIM'
+// }
 
 type Product = {
     id: string,
