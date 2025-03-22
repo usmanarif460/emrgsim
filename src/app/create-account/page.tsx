@@ -73,10 +73,10 @@ const Ad = () => {
     <div className="container w-full h-screen bg-white overflow-y-auto">
       <Header />
       <div className="content py-[32px] px-[24px] h-auto">
-        <h1 className="text-3xl font-medium leading-[100%] mb-4 w-10/12">
+        <h1 className="text-[32px] font-medium leading-[100%] mb-4 w-10/12">
           Cheap data bundles in minutes
         </h1>
-        <p className="text-base mb-6">
+        <p className="text-base mb-6 leading-[24px] font-normal tracking-normal">
           Get quick access to affordable data bundles and save on roaming!
         </p>
         <div className="buttons flex flex-col gap-[12px] mb-8">
@@ -97,7 +97,7 @@ const Ad = () => {
         </div>
         {selected && (
           <form onSubmit={handleSubmit}>
-            <p className="description mb-4">
+            <p className=" mb-4 leading-[24px] text-base font-normal tracking-normal">
               Enter your email address below and we’ll send you a link to top up
               your data
             </p>

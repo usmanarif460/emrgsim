@@ -93,14 +93,12 @@ const DataPlans = () => {
                     onChange={() => setProductIndex(i)}
                   />
                   <div
-                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${
-                      productIndex === i
-                        ? "bg-[#EBF7F9] border-[#C0D7DB]"
-                        : "border-gray-300"
+                    className={`w-6 h-6 rounded-full border-2 border-[#D6E8EB] flex items-center justify-center transition ${
+                      productIndex === i ? "bg-[#EBF7F9] " : "border-[#D6E8EB]"
                     }`}
                   >
                     {productIndex === i && (
-                      <div className="w-3 h-3 bg-white rounded-full"></div>
+                      <div className="w-[10px] h-[10px] bg-white rounded-full"></div>
                     )}
                   </div>
                 </div>

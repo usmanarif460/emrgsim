@@ -83,6 +83,11 @@ const Verification = () => {
         updated[index] = value;
         return updated;
       });
+
+      // Move to the next input field if the current input is valid
+      if (value !== "" && index < inputRefs.current.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+      }
     }
   };
 
@@ -96,6 +101,7 @@ const Verification = () => {
         updated[index] = "";
         return updated;
       });
+      inputRefs.current[index - 1]?.focus();
     }
   };
 
@@ -124,7 +130,7 @@ const Verification = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-[#00539B] text-white p-6">
       <h2 className="text-2xl font-semibold">Identity Verification</h2>
-      <p className="text-center mt-4 text-gray-300">
+      <p className="text-center mt-4 text-gray-100">
         A verification code was sent to your email. Enter your OTP below.
       </p>
 
