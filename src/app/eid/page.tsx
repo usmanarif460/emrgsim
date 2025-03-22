@@ -77,7 +77,7 @@ const EID = () => {
               <Button
                 text="Continue"
                 disabled={eid.length === 0}
-                onClick={() => router.push("/profile")}
+                onClick={() => router.push("/thanks")}
               />
             )}
           </div>

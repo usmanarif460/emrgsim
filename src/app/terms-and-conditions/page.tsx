@@ -170,7 +170,7 @@ const TermsAndConditions = () => {
         <div className="w-full flex flex-col items-center">
           <canvas
             ref={canvasRef}
-            className="h-24 w-full border-b border-gray-300"
+            className="h-28 w-full border-b border-gray-300"
             onMouseDown={(ev) =>
               startDrawing(getCanvasPoint(mousePosition(ev)))
             }
@@ -184,7 +184,7 @@ const TermsAndConditions = () => {
             onTouchMove={(ev) => draw(getCanvasPoint(touchPosition(ev)))}
           />
           <p
-            className="absolute bottom-[100px] right-6 text-[#212121]  font-medium text-lg cursor-pointer"
+            className="absolute bottom-[50px] right-6 text-[#212121]  font-medium text-lg cursor-pointer"
             onClick={() => canvasRef.current && clearCanvas(canvasRef.current)}
           >
             Clear
