@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/button";
 import HeaderTerms from "@/components/header-small";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
 type CanvasPosition = {
@@ -11,7 +11,7 @@ type CanvasPosition = {
 
 const TermsAndConditions = () => {
   const router = useRouter();
-  const canvas = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [currentPosition, setCurrentPosition] = useState<CanvasPosition | null>(
     null
   );
@@ -19,84 +19,89 @@ const TermsAndConditions = () => {
   const [drawing, setDrawing] = useState<boolean>(false);
 
   function preventTouch(ev: TouchEvent) {
-    if (canvas.current && ev.target === canvas.current) {
+    if (canvasRef.current && ev.target === canvasRef.current) {
       ev.preventDefault();
     }
   }
 
   function preventMouse(ev: MouseEvent) {
-    if (canvas.current && ev.target === canvas.current) {
+    if (canvasRef.current && ev.target === canvasRef.current) {
       ev.preventDefault();
     }
   }
 
   useEffect(() => {
-    if (!canvas.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    canvas.current.addEventListener("touchstart", preventTouch, {
+    canvas.addEventListener("touchstart", preventTouch, {
       passive: false,
     });
-    canvas.current.addEventListener("touchend", preventTouch, {
+    canvas.addEventListener("touchend", preventTouch, {
       passive: false,
     });
-    canvas.current.addEventListener("touchmove", preventTouch, {
+    canvas.addEventListener("touchmove", preventTouch, {
       passive: false,
     });
-    canvas.current.addEventListener("mousedown", preventMouse, {
+    canvas.addEventListener("mousedown", preventMouse, {
       passive: false,
     });
-    canvas.current.addEventListener("mouseup", preventMouse, {
+    canvas.addEventListener("mouseup", preventMouse, {
       passive: false,
     });
-    canvas.current.addEventListener("mousemove", preventMouse, {
+    canvas.addEventListener("mousemove", preventMouse, {
       passive: false,
     });
 
-    const ctx = canvas.current.getContext("2d");
+    const ctx = canvas.getContext("2d");
     if (ctx) {
       ctx.strokeStyle = "#222222";
       ctx.lineWidth = 4;
     }
 
     return () => {
-      if (!canvas.current) return;
-      canvas.current.removeEventListener("touchstart", preventTouch);
-      canvas.current.removeEventListener("touchend", preventTouch);
-      canvas.current.removeEventListener("touchmove", preventTouch);
-      canvas.current.removeEventListener("mousedown", preventMouse);
-      canvas.current.removeEventListener("mouseup", preventMouse);
-      canvas.current.removeEventListener("mousemove", preventMouse);
+      if (!canvas) return;
+      canvas.removeEventListener("touchstart", preventTouch);
+      canvas.removeEventListener("touchend", preventTouch);
+      canvas.removeEventListener("touchmove", preventTouch);
+      canvas.removeEventListener("mousedown", preventMouse);
+      canvas.removeEventListener("mouseup", preventMouse);
+      canvas.removeEventListener("mousemove", preventMouse);
     };
   }, []);
 
+  const renderCanvas = useCallback(
+    (
+      canvas: HTMLCanvasElement,
+      currentPosition: CanvasPosition,
+      lastPos: CanvasPosition
+    ) => {
+      const ctx = canvas.getContext("2d");
+      if (!ctx || !drawing) return;
+      ctx.beginPath();
+      ctx.moveTo(lastPos.x, lastPos.y);
+      ctx.lineTo(currentPosition.x, currentPosition.y);
+      ctx.stroke();
+    },
+    [drawing]
+  );
+
   useEffect(() => {
-    if (!drawing || !canvas.current || !currentPosition || !lastPos) {
+    const canvas = canvasRef.current;
+    if (!drawing || !canvas || !currentPosition || !lastPos) {
       if (drawing && currentPosition && !lastPos) {
         setLastPos(currentPosition);
       }
       return;
     }
-    renderCanvas(canvas.current, currentPosition, lastPos);
+    renderCanvas(canvas, currentPosition, lastPos);
     setLastPos({ ...currentPosition });
-  }, [currentPosition]);
+  }, [currentPosition, drawing, lastPos, renderCanvas]);
 
   function getCanvasPoint(pos: CanvasPosition | null): CanvasPosition | null {
-    if (!pos || !canvas.current) return null;
-    const rect = canvas.current.getBoundingClientRect();
+    if (!pos || !canvasRef.current) return null;
+    const rect = canvasRef.current.getBoundingClientRect();
     return { x: pos.x - rect.left, y: pos.y - rect.top };
-  }
-
-  function renderCanvas(
-    canvas: HTMLCanvasElement,
-    currentPosition: CanvasPosition,
-    lastPos: CanvasPosition
-  ) {
-    const ctx = canvas.getContext("2d");
-    if (!ctx || !drawing) return;
-    ctx.beginPath();
-    ctx.moveTo(lastPos.x, lastPos.y);
-    ctx.lineTo(currentPosition.x, currentPosition.y);
-    ctx.stroke();
   }
 
   function clearCanvas(canvas: HTMLCanvasElement) {
@@ -164,7 +169,7 @@ const TermsAndConditions = () => {
       <div className="flex flex-col items-center w-full bg-white shadow-lg px-6 pb-6">
         <div className="w-full flex flex-col items-center">
           <canvas
-            ref={canvas}
+            ref={canvasRef}
             className="h-24 w-full border-b border-gray-300"
             onMouseDown={(ev) =>
               startDrawing(getCanvasPoint(mousePosition(ev)))
@@ -180,7 +185,7 @@ const TermsAndConditions = () => {
           />
           <p
             className="absolute bottom-[100px] right-6 text-[#212121]  font-medium text-lg cursor-pointer"
-            onClick={() => canvas.current && clearCanvas(canvas.current)}
+            onClick={() => canvasRef.current && clearCanvas(canvasRef.current)}
           >
             Clear
           </p>

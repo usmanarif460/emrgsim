@@ -1,85 +1,92 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
 import { useRouter } from "next/navigation";
 
-interface Props {
-  eid: string;
-  product?: { id: string };
-  pId: string;
-  next: () => void;
-}
-
-const Thanks: React.FC<Props> = ({ eid, product, pId }) => {
+const Thanks = () => {
+  const product = {
+    id: "NRMshvhs7EjyYdn-2obO7bu_7NzAeNmGWhTvX8_CYVo=",
+    name: "string",
+    sim_types: ["ESIM"],
+    duration: 1,
+    duration_unit: "DAYS",
+    data: 1,
+    data_unit: "GB",
+    price: 20,
+    price_currency: "$",
+    footprint_code: "string",
+  };
   const [timeoutCount, setTimeoutCount] = useState(0);
   const router = useRouter();
-  const sendEID = (bypass?: boolean) => {
-    if (!product || !product.id) {
-      console.warn("Product ID is not defined");
-      return;
-    }
 
-    console.log(pId);
-    console.log({
-      product_id: product.id,
-      device: {
-        id: eid,
-        eid,
-        operating_system: "ios",
-        model: "iPhone",
-      },
-    });
+  const sendEID = useCallback(
+    (bypass?: boolean) => {
+      if (!product || !product.id) {
+        console.warn("Product ID is not defined");
+        return;
+      }
 
-    fetch("/api/activate_product", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: "test@test.com",
-        first_name: "firstname",
-        last_name: "lastname",
-        country_of_residence: "US",
-        product_id: pId,
-        device: {
-          id: eid,
-          eid,
-          operating_system: "ios",
-          model: "iPhone",
+      console.log(
+        {
+          product_id: product.id,
+          device: {
+            operating_system: "ios",
+            model: "iPhone",
+          },
         },
-        bypass,
-      }),
-    })
-      .then((resp) => {
-        if (resp.status === 403) throw new Error("not ready");
-        return resp.json();
+        [product]
+      );
+
+      fetch("/api/activate_product", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "test@test.com",
+          first_name: "firstname",
+          last_name: "lastname",
+          country_of_residence: "US",
+          product_id: product.id,
+          device: {
+            operating_system: "ios",
+            model: "iPhone",
+          },
+          bypass,
+        }),
       })
-      .then((data) => {
-        if (data.message !== "SUCCESS") {
-          console.warn(data.message);
-          alert(`Unable to activate, please check your EID: ${data.message}`);
-        }
-      })
-      .catch((err) => {
-        if (err.message === "not ready") {
-          setTimeoutCount((prev) => prev + 1);
-          return;
-        }
-        console.warn(err);
-        alert(
-          `Unable to activate, please check your connection: ${err.message}`
-        );
-      });
-  };
+        .then((resp) => {
+          if (resp.status === 403) throw new Error("not ready");
+          return resp.json();
+        })
+        .then((data) => {
+          if (data.message !== "SUCCESS") {
+            console.warn(data.message);
+            alert(`Unable to activate, please check your EID: ${data.message}`);
+          }
+        })
+        .catch((err) => {
+          if (err.message === "not ready") {
+            setTimeoutCount((prev) => prev + 1);
+            return;
+          }
+          console.warn(err);
+          alert(
+            `Unable to activate, please check your connection: ${err.message}`
+          );
+        });
+    },
+    [product]
+  );
 
   useEffect(() => {
     sendEID();
-  }, []);
+  }, [sendEID]);
 
   useEffect(() => {
     const timer = setTimeout(() => sendEID(), 1000);
     return () => clearTimeout(timer);
-  }, [timeoutCount]);
+  }, [timeoutCount, sendEID]);
 
   return (
     <div className="w-full h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center">

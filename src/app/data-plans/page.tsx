@@ -1,21 +1,19 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ImSpinner9 } from "react-icons/im";
 import Product from "@/types/product";
 import { international } from "@/language";
 import common from "@/language/english/common.json";
 import PlansHeader from "@/components/plans-header";
 import Button from "@/components/button";
-import { useRouter } from "next/navigation";
 
-interface DataPlansProps {
-  enableBack: () => void;
-  onPlanSelection: (product: Product) => void;
-}
-
-const DataPlans = ({ enableBack }: DataPlansProps) => {
+const DataPlans = () => {
   const router = useRouter();
+  const [productIndex, setProductIndex] = useState(-1);
+  const productRef = useRef(null);
 
+  // Dummy products list
   const [products] = useState<Product[]>([
     {
       id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
@@ -42,7 +40,7 @@ const DataPlans = ({ enableBack }: DataPlansProps) => {
       footprint_code: "USA",
     },
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7123LbaudFBShHmFR2f02qo=",
+      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 30,
@@ -55,16 +53,10 @@ const DataPlans = ({ enableBack }: DataPlansProps) => {
     },
   ]);
 
-  const [productIndex, setProductIndex] = useState(-1);
-  const productRef = useRef(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = international(common.EmrgMobile);
-    if (typeof enableBack === "function") {
-      enableBack();
-    }
-  }, [enableBack]);
+  }, []);
 
   return (
     <div className="relative h-screen bg-white">

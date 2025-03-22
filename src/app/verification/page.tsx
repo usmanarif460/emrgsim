@@ -5,14 +5,17 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import useOTPStore from "@/stores/otpStore";
 import { sendMail } from "@/lib/send-mail";
-type Props = {
-  setVerificationNumber: (num: number) => void;
-  enableBack: () => void;
-};
 
-const Verification = ({}: Props) => {
+const Verification = () => {
   const { otp, email } = useOTPStore(); // Fetch OTP from store
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [verification, setVerification] = useState<Array<number | string>>(
+    Array(6).fill("")
+  );
+
+  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
+
   async function resendOtp(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -54,7 +57,6 @@ const Verification = ({}: Props) => {
       });
 
       toast.success("OTP sent successfully!");
-      router.push("/verification");
     } catch (error) {
       toast.error("Failed to send OTP");
       console.error("An error occurred while sending OTP", error);
@@ -62,23 +64,15 @@ const Verification = ({}: Props) => {
       setLoading(false);
     }
   }
-  const inputs = Array.from({ length: 6 }, () => null).map(() =>
-    useRef<HTMLInputElement>(null)
-  );
-
-  const [verification, setVerification] = useState<Array<number | string>>(
-    Array(6).fill("")
-  );
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    inputs[0]?.current?.focus();
+    inputRefs.current[0]?.focus();
   }, []);
 
   useEffect(() => {
     if (!verification.includes("")) {
-      inputs[verification.indexOf("")]?.current?.focus();
+      inputRefs.current[verification.indexOf("")]?.focus();
     }
   }, [verification]);
 
@@ -136,10 +130,12 @@ const Verification = ({}: Props) => {
 
       <form onSubmit={handleSubmit} className="mt-6 w-full max-w-sm">
         <div className="flex justify-center space-x-2">
-          {inputs.map((ref, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <input
               key={i}
-              ref={ref}
+              ref={(el) => {
+                inputRefs.current[i] = el;
+              }}
               type="text"
               maxLength={1}
               className="w-12 h-14 text-center text-lg bg-[#00539B] border-b-2 border-white focus:outline-none focus:border-blue-500"

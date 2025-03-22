@@ -2,18 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Product from "../../types/product";
 import PurchaseHeader from "@/components/header-purchase";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
 
-type Props = {
-  enabledBack: () => void;
-  product?: Product;
-  onPurchase: (email: string) => void;
-};
-
-const defaultProduct: Product = {
+const product = {
   id: "NRMshvhs7EjyYdn-2obO7bu_7NzAeNmGWhTvX8_CYVo=",
   name: "string",
   sim_types: ["ESIM"],
@@ -26,15 +19,13 @@ const defaultProduct: Product = {
   footprint_code: "string",
 };
 
-const Purchase = ({ enabledBack, product = defaultProduct }: Props) => {
+const Purchase = () => {
   const router = useRouter();
   useEffect(() => {
     document.title = "Purchase";
-    if (typeof enabledBack === "function") {
-      enabledBack();
-    }
+
     window.scrollTo(0, 0);
-  }, [enabledBack]);
+  }, []);
 
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
