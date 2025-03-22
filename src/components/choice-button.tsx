@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ChoiceButton({
   vector,
   heading,
@@ -5,7 +7,7 @@ export default function ChoiceButton({
   selected,
   onClick,
 }: {
-  vector: string;
+  vector: React.ReactNode;
   heading: string;
   description: string;
   selected?: boolean;
@@ -20,10 +22,9 @@ export default function ChoiceButton({
       onClick={onClick}
     >
       <div className="flex items-center">
-        <div
-          className="w-12 h-12 bg-[#d3e7eb] rounded-full flex items-center justify-center"
-          dangerouslySetInnerHTML={{ __html: vector }}
-        />
+        <div className="w-12 h-12 bg-[#d3e7eb] rounded-full flex items-center justify-center">
+          {vector}
+        </div>
         <div className="flex flex-col gap-.5 ml-3 flex-1">
           <h4 className="text-base font-medium  text-left leading-[1.64] text-[#212121] self-start">
             {heading}
