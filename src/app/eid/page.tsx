@@ -6,6 +6,7 @@ import Product from "@/types/product";
 import User from "@/types/user";
 import HeaderEid from "@/components/header-eid";
 import Button from "@/components/button";
+import { useRouter } from "next/navigation";
 
 type Props = {
   disableBack: () => void;
@@ -17,6 +18,8 @@ type Props = {
 };
 
 const EID = (props: Props) => {
+  const router = useRouter();
+
   const [eid, setEID] = useState<string>("");
   const [isActivating, setIsActivating] = useState<boolean>(false);
   const [activated, setActivated] = useState<boolean>(false);
@@ -57,7 +60,7 @@ const EID = (props: Props) => {
   return (
     <div className="h-screen w-screen flex flex-col items-center text-center bg-gray-100 ">
       {(isActivating || activated) && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 text-white">
+        <div className="fixed inset-0 flex flex-col items-center justify-center bg-[#00539B] bg-opacity-80 text-white">
           {activated ? (
             <h1 className="text-3xl font-semibold">Success!</h1>
           ) : (
@@ -135,9 +138,9 @@ const EID = (props: Props) => {
           <div className="flex items-center justify-center">
             {!props.dontSubmit && !activated && (
               <Button
-                text="Install eSIM"
+                text="Next"
                 disabled={eid.length === 0}
-                onClick={() => props.onContinue(eid)}
+                onClick={() => router.push("/thanks")}
               />
             )}
           </div>
@@ -152,7 +155,7 @@ const EID = (props: Props) => {
           {props.dontSubmit && (
             <button
               className="bg-gray-700 text-white py-2 px-4 rounded-md"
-              onClick={() => props.onContinue(eid)}
+              onClick={() => router.push("/thanks")}
             >
               Continue
             </button>

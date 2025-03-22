@@ -6,6 +6,7 @@ import Product from "../../types/product";
 import PurchaseHeader from "@/components/header-purchase";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
+
 type Props = {
   enabledBack: () => void;
   product?: Product;
@@ -25,11 +26,7 @@ const defaultProduct: Product = {
   footprint_code: "string",
 };
 
-const Purchase = ({
-  enabledBack,
-  product = defaultProduct,
-  onPurchase,
-}: Props) => {
+const Purchase = ({ enabledBack, product = defaultProduct }: Props) => {
   const router = useRouter();
   useEffect(() => {
     document.title = "Purchase";
@@ -78,15 +75,17 @@ const Purchase = ({
         <h2 className="text-lg font-medium text-[#212121] leading-[100%]">
           Cart Summary
         </h2>
-        <div className="border-b-2 border-[#EFEFEF] pb-4 mb-4 mt-3">
+        <div className="border-b-2 border-[#EFEFEF] pb-4 font-medium mb-4 mt-3">
           <div className="flex justify-between">
-            <p className="text-base font-normal">
+            <p className="text-base font-normal leading-[164%] text-[#212121]">
               {product.data} {product.data_unit} ({product.duration}{" "}
               {product.duration_unit})
             </p>
-            <p>${product.price}</p>
+            <p className="font-medium leading-[164%] text-[#212121]">
+              ${product.price}
+            </p>
           </div>
-          <div className="flex justify-between text-gray-600">
+          <div className="flex justify-between text-[#212121]">
             <p>Tax</p>
             <p>${(product.price * 0.15).toFixed(2)}</p>
           </div>
@@ -95,7 +94,9 @@ const Purchase = ({
             <p>${(product.price * 1.15).toFixed(2)}</p>
           </div>
         </div>
-        <h2 className="text-lg font-medium">Select Payment Method</h2>
+        <h2 className="text-lg font-medium leading-[164%]">
+          Select Payment Method
+        </h2>
         <div className="space-y-3 mt-3">
           {paymentMethods.map((method) => (
             <label
@@ -126,7 +127,7 @@ const Purchase = ({
                 height={40}
                 className="mr-3"
               />
-              <p>{method.label}</p>
+              <p className="text-[#212121] text-base">{method.label}</p>
             </label>
           ))}
         </div>
@@ -134,8 +135,8 @@ const Purchase = ({
           <form
             className="mt-6"
             onSubmit={(ev) => {
-              onPurchase("test@email.com");
               ev.preventDefault();
+              router.push("/eid");
             }}
           >
             <div className="space-y-4">
@@ -149,8 +150,8 @@ const Purchase = ({
                 <input
                   id="card-number"
                   name="card-number"
-                  type="text"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
+                  type="number"
+                  className="py-[4px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
                   required
                   autoComplete="cc-number"
                 />
@@ -166,7 +167,7 @@ const Purchase = ({
                   id="cardholder-name"
                   name="cardholder-name"
                   type="text"
-                  className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
+                  className="py-[4px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
                   required
                   autoComplete="cc-name"
                 />
@@ -183,7 +184,7 @@ const Purchase = ({
                     id="expiry-date"
                     name="expiry-date"
                     type="text"
-                    className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
+                    className="py-[4px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
                     required
                     autoComplete="cc-exp"
                   />
@@ -198,12 +199,28 @@ const Purchase = ({
                   <input
                     id="cvc"
                     name="cvc"
-                    type="text"
-                    className="py-[8px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
+                    type="number"
+                    className="py-[4px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
                     required
                     autoComplete="cc-csc"
                   />
                 </div>
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="font-bold text-sm leading-[26px] text-[#00539b]"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  className="py-[4px] font-normal outline-none text-base leading-[26px] border-b border-[#e6e6e6] w-full"
+                  required
+                  autoComplete="cc-name"
+                />
               </div>
               <div className="flex items-center space-x-2">
                 <input type="checkbox" className="w-4 h-4" />
@@ -212,7 +229,7 @@ const Purchase = ({
                 </p>
               </div>
               <div className="flex items-center justify-center">
-                <Button text="Submit" onClick={() => router.push("/thanks")} />
+                <Button text="Submit" />
               </div>
             </div>
           </form>
