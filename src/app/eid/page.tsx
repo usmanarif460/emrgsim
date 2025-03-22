@@ -28,6 +28,29 @@ const EID = () => {
           Thanks for your order!
         </h1>
 
+        <h1 className="text-2xl mt-1 font-medium text-left text-[#212121] leading-[100%]">
+          Just one little thing...
+        </h1>
+        <h2 className="mt-4 text-base text-left font-normal  leading-6">
+          To install your eSIM you’ll need to complete the quick steps below
+        </h2>
+        <ol className="text-left mt-4 space-y-2">
+          <li className="text-base leading-7 text-[#212121]">
+            1. Go to your phone <b>Settings</b>
+          </li>
+          <li className="text-base leading-7 text-[#212121]">
+            2. Select <b>General</b>, then <b>About</b>
+          </li>
+          <li className="text-base leading-7 text-[#212121]">
+            3. Scroll down and select <b>EID</b>
+          </li>
+          <li className="text-base leading-7 text-[#212121]">
+            4. Copy the EID (long hold to copy)
+          </li>
+          <li className="text-base leading-7 text-[#212121]">
+            5. Paste it below
+          </li>
+        </ol>
         <form
           className="mt-4 flex flex-col space-y-4"
           onSubmit={(ev) => {
@@ -49,21 +72,15 @@ const EID = () => {
             value={eid}
             onChange={(ev) => setEID(ev.target.value.trim())}
           />
-          {!activated && (
-            <Button
-              text="Next"
-              disabled={eid.length === 0}
-              onClick={() => eid}
-            />
-          )}
-          {
-            <button
-              className="bg-gray-700 text-white py-2 px-4 rounded-md"
-              onClick={() => router.push("/thanks")}
-            >
-              Continue
-            </button>
-          }
+          <div className="flex items-center justify-center">
+            {!activated && (
+              <Button
+                text="Continue"
+                disabled={eid.length === 0}
+                onClick={() => router.push("/profile")}
+              />
+            )}
+          </div>
         </form>
       </div>
     </div>
