@@ -67,12 +67,12 @@ const EID = () => {
         >
           <input
             type="text"
-            className="px-6 py-3 rounded-md text-base w-full border-2 border-[#DADADA]"
+            className="px-6 py-3 rounded-md text-base w-full border-2 border-[#DADADA] placeholder:text-[#212121]"
             placeholder="Enter EID"
             value={eid}
             onChange={(ev) => setEID(ev.target.value.trim())}
           />
-          <div className="flex items-center justify-center w-10/12 mx-auto">
+          <div className="flex items-center justify-center mt-5 w-10/12 mx-auto">
             {!activated && (
               <Button
                 text="Next"

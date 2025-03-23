@@ -61,8 +61,8 @@ const Thanks = () => {
         })
         .then((data) => {
           if (data.message !== "SUCCESS") {
-            console.warn(data.message);
-            alert(`Unable to activate, please check your EID: ${data.message}`);
+            // console.warn(data.message);
+            // alert(`Unable to activate, please check your EID: ${data.message}`);
           }
         })
         .catch((err) => {
@@ -70,10 +70,10 @@ const Thanks = () => {
             setTimeoutCount((prev) => prev + 1);
             return;
           }
-          console.warn(err);
-          alert(
-            `Unable to activate, please check your connection: ${err.message}`
-          );
+          // console.warn(err);
+          // alert(
+          //   `Unable to activate, please check your connection: ${err.message}`
+          // );
         });
     },
     [product]
@@ -92,7 +92,7 @@ const Thanks = () => {
     <div className="w-full h-screen bg-white relative overflow-hidden flex flex-col items-center justify-center">
       <Header className="absolute top-0 " />
       <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-        <div className="bg-white rounded-2xl -mt-32 w-[309px] h-[450px] flex flex-col items-center ">
+        <div className="bg-white rounded-2xl -mt-32 w-[309px] h-[440px] flex flex-col items-center ">
           <div className="bg-[#d6e8eb] w-full h-[222px] rounded-t-2xl flex justify-center items-center">
             <Image
               src="/assets/saudi/success.png"
@@ -103,7 +103,9 @@ const Thanks = () => {
             />
           </div>
           <div className="flex p-4 flex-col items-center text-center gap-2 w-full ">
-            <h3 className="text-2xl font-medium">Success</h3>
+            <h3 className="text-2xl font-medium text-center leading-[149%]">
+              Success!
+            </h3>
             <p className="text-base text-gray-700">
               Your eSIM is ready. Please click the link below to install it.
             </p>
