@@ -81,7 +81,7 @@ const DataPlans = () => {
                 className={`flex items-center p-4 rounded-xl cursor-pointer transition border-2 ${
                   productIndex === i
                     ? "bg-[#EBF7F9] border-[#C0D7DB]"
-                    : "bg-white shadow-md border-transparent"
+                    : "bg-white shadow-[1px_1px_10px_0px_#0000001A] border-transparent"
                 }`}
                 onClick={() => setProductIndex(i)}
               >

@@ -40,19 +40,19 @@ const Purchase = () => {
       id: "paypal",
       label: "PayPal",
       img: "/assets/kenya/kaa/paypal.png",
-      disabled: false,
+      disabled: true,
     },
     {
       id: "apple-pay",
       label: "Apple Pay",
       img: "/assets/kenya/kaa/apple-pay.png",
-      disabled: false,
+      disabled: true,
     },
     {
       id: "google-pay",
       label: "Google Pay",
       img: "/assets/kenya/kaa/google-pay.png",
-      disabled: false,
+      disabled: true,
     },
   ];
 

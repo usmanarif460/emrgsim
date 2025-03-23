@@ -142,9 +142,9 @@ const TermsAndConditions = () => {
   }
 
   return (
-    <div className="overflow-y-auto relative h-screen bg-white">
+    <div className="relative h-screen bg-white flex flex-col">
       <HeaderTerms />
-      <div className="p-6 box-border">
+      <div className="flex-1 overflow-y-auto p-6 box-border">
         <h1 className="text-2xl font-medium">Terms And Conditions</h1>
         <div className="flex flex-col gap-10 mt-3">
           <p className="text-[#212121] text-base leading-[164%] font-normal">
@@ -166,8 +166,8 @@ const TermsAndConditions = () => {
         </div>
       </div>
 
-      <div className="flex flex-col items-center w-full bg-white shadow-lg px-6 pb-6">
-        <div className="w-full flex flex-col items-center">
+      <div className="flex flex-col items-center w-full  bg-white shadow-top-only px-6 pb-6">
+        <div className="w-full flex flex-col items-center relative">
           <canvas
             ref={canvasRef}
             className="h-28 w-full border-b border-gray-300"
@@ -184,7 +184,7 @@ const TermsAndConditions = () => {
             onTouchMove={(ev) => draw(getCanvasPoint(touchPosition(ev)))}
           />
           <p
-            className="absolute bottom-[50px] right-6 text-[#212121]  font-medium text-lg cursor-pointer"
+            className="absolute top-20 right-1 text-[#212121] font-medium text-lg cursor-pointer"
             onClick={() => canvasRef.current && clearCanvas(canvasRef.current)}
           >
             Clear

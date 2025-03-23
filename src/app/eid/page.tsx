@@ -72,10 +72,10 @@ const EID = () => {
             value={eid}
             onChange={(ev) => setEID(ev.target.value.trim())}
           />
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center w-10/12 mx-auto">
             {!activated && (
               <Button
-                text="Continue"
+                text="Next"
                 disabled={eid.length === 0}
                 onClick={() => router.push("/thanks")}
               />

@@ -73,7 +73,7 @@ const Ad = () => {
     <div className="container w-full h-screen bg-white overflow-y-auto">
       <Header />
       <div className="content py-[32px] px-[24px] h-auto">
-        <h1 className="text-[32px] font-medium leading-[100%] mb-4 w-10/12">
+        <h1 className="text-[32px] font-medium leading-[100%] mb-4 w-[87.33%]">
           Cheap data bundles in minutes
         </h1>
         <p className="text-base mb-6 leading-[24px] font-normal tracking-normal">

@@ -16,8 +16,10 @@ export default function ChoiceButton({
   return (
     <button
       type="button"
-      className={`w-full h-[100px] pl-3 pr-12 rounded-xl border-none shadow-md flex items-center transition-all duration-300 ${
-        selected ? "bg-[#ecf7f9] border-2 border-[#c0d7db]" : "bg-white"
+      className={`w-full h-[100px] pl-3 pr-12 rounded-xl  shadow-[1px_1px_10px_0px_#0000001A] flex items-center transition-all duration-300 ${
+        selected
+          ? "bg-[#ecf7f9] border-2 border-[#c0d7db]"
+          : "bg-white border-none"
       }`}
       onClick={onClick}
     >
