@@ -72,11 +72,11 @@ const Ad = () => {
   return (
     <div className="container w-full h-screen bg-white overflow-y-auto">
       <Header />
-      <div className="content py-[32px] px-[24px] h-auto">
-        <h1 className="text-[32px] font-medium leading-[100%] mb-4 w-[87.33%]">
+      <div className="content py-8 px-6 h-auto">
+        <h1 className="text-3xl font-medium leading-[100%] mb-4 text-balance">
           Cheap data bundles in minutes
         </h1>
-        <p className="text-base mb-6 leading-[24px] font-normal tracking-normal">
+        <p className="text-base mb-6 leading-6 font-normal tracking-normal">
           Get quick access to affordable data bundles and save on roaming!
         </p>
         <div className="buttons flex flex-col gap-[12px] mb-8">
@@ -97,12 +97,12 @@ const Ad = () => {
         </div>
         {selected && (
           <form onSubmit={handleSubmit}>
-            <p className=" mb-4 leading-[24px] text-base font-normal tracking-normal">
+            <p className="mb-4 leading-6 text-base font-normal tracking-normal">
               Enter your email address below and we’ll send you a link to top up
               your data
             </p>
             <div className="mb-10">
-              <div className="grid pt-[24px]">
+              <div className="grid pt-6">
                 <label
                   htmlFor="firstName"
                   className="font-bold text-sm leading-[26px] text-[#00539b]"
@@ -117,7 +117,7 @@ const Ad = () => {
                   required
                 />
               </div>
-              <div className="grid w-full pt-[24px]">
+              <div className="grid w-full pt-6">
                 <label
                   htmlFor="lastName"
                   className="font-bold text-sm leading-[26px] text-[#00539b]"
@@ -131,7 +131,7 @@ const Ad = () => {
                   required
                 />
               </div>
-              <div className="grid w-full pt-[24px]">
+              <div className="grid w-full pt-6">
                 <label
                   htmlFor="email"
                   className="font-bold text-sm leading-[26px] text-[#00539b]"
@@ -149,7 +149,7 @@ const Ad = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div className="grid w-full pt-[24px]">
+              <div className="grid w-full pt-6">
                 <label
                   htmlFor="eVisaNumber"
                   className="font-bold text-sm leading-[26px] text-[#00539b]"
@@ -164,7 +164,7 @@ const Ad = () => {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center mt-8 mb-8">
               <Button text="Done" disabled={loading} />
             </div>
           </form>

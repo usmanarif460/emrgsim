@@ -96,7 +96,8 @@ const TermsAndConditions = () => {
     }
     renderCanvas(canvas, currentPosition, lastPos);
     setLastPos({ ...currentPosition });
-  }, [currentPosition, drawing, lastPos, renderCanvas]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPosition, drawing, renderCanvas]);
 
   function getCanvasPoint(pos: CanvasPosition | null): CanvasPosition | null {
     if (!pos || !canvasRef.current) return null;
@@ -145,29 +146,29 @@ const TermsAndConditions = () => {
     <div className="relative h-screen bg-white flex flex-col">
       <HeaderTerms />
       <div className="flex-1 overflow-y-auto p-6 box-border">
-        <h1 className="text-2xl font-medium">Terms And Conditions</h1>
+        <h1 className="text-2xl font-medium">Terms and Conditions</h1>
         <div className="flex flex-col gap-10 mt-3">
-          <p className="text-[#212121] text-base leading-[164%] font-normal">
+          <p className="text-primary text-base leading-[164%] font-normal">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
-          <p className="text-[#212121] text-base leading-[164%] font-normal">
+          <p className="text-primary text-base leading-[164%] font-normal">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
           </p>
-          <p className="text-[#212121] text-base leading-[164%] font-normal">
+          <p className="text-primary text-base leading-[164%] font-normal">
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur.
           </p>
         </div>
       </div>
 
-      <div className="flex flex-col items-center w-full  bg-white shadow-top-only px-6 pb-6">
-        <div className="w-full flex flex-col items-center relative">
+      <div className="flex flex-col items-center w-full bg-white shadow-top-only px-6 pb-6">
+        <div className="w-full flex items-end justify-end">
           <canvas
             ref={canvasRef}
             className="h-28 w-full border-b border-gray-300"
@@ -183,20 +184,24 @@ const TermsAndConditions = () => {
             onTouchCancel={stopDrawing}
             onTouchMove={(ev) => draw(getCanvasPoint(touchPosition(ev)))}
           />
-          <p
-            className="absolute top-20 right-1 text-[#212121] font-medium text-lg cursor-pointer"
-            onClick={() => canvasRef.current && clearCanvas(canvasRef.current)}
-          >
-            Clear
-          </p>
+          {canvasRef.current && (
+            <p
+              className="text-primary font-medium text-lg cursor-pointer self-end"
+              onClick={() =>
+                canvasRef.current && clearCanvas(canvasRef.current)
+              }
+            >
+              Clear
+            </p>
+          )}
         </div>
         <div className="w-full flex flex-col items-center mt-4">
           <Button
-            text="Accept & Sign"
+            text="Accept & sign"
             onClick={() => router.push("/data-plans")}
           />
         </div>
-        <p className="mt-4 text-[#212121] font-medium text-base cursor-pointer">
+        <p className="mt-4 text-primary font-medium text-base cursor-pointer">
           I disagree
         </p>
       </div>

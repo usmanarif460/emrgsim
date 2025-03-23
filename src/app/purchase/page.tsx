@@ -60,27 +60,27 @@ const Purchase = () => {
     <div className="h-screen w-screen overflow-y-auto bg-gray-100">
       <PurchaseHeader />
       <div className="w-full bg-white p-6 shadow-md ">
-        <h1 className="text-2xl font-semibold mb-6 text-[#212121] leading-[100%]">
+        <h1 className="text-2xl font-semibold mb-6 text-primary leading-[100%]">
           Payment
         </h1>
-        <h2 className="text-lg font-semibold text-[#212121] leading-[164%]">
+        <h2 className="text-lg font-semibold text-primary leading-[164%]">
           Order Summary
         </h2>
         <div className="border-b-2 border-[#EFEFEF] pb-4 font-medium mb-4 mt-3">
           <div className="flex justify-between">
-            <p className="text-base font-normal leading-[164%] text-[#212121]">
+            <p className="text-base font-normal leading-[164%] text-primary">
               {product.data} {product.data_unit} ({product.duration}{" "}
               {product.duration_unit})
             </p>
-            <p className="font-medium text-base leading-[164%] text-[#212121]">
+            <p className="font-medium text-base leading-[164%] text-primary">
               ${product.price}
             </p>
           </div>
-          <div className="flex justify-between text-[#212121]">
-            <p className="text-base font-normal leading-[164%] text-[#212121]">
+          <div className="flex justify-between text-primary">
+            <p className="text-base font-normal leading-[164%] text-primary">
               Tax
             </p>
-            <p className="font-medium text-base leading-[164%] text-[#212121]">
+            <p className="font-medium text-base leading-[164%] text-primary">
               ${(product.price * 0.15).toFixed(2)}
             </p>
           </div>
@@ -122,7 +122,7 @@ const Purchase = () => {
                 height={40}
                 className="mr-3"
               />
-              <p className="text-[#212121] text-base leading-[164%]">
+              <p className="text-primary text-base leading-[164%]">
                 {method.label}
               </p>
             </label>
@@ -221,7 +221,7 @@ const Purchase = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <input type="checkbox" className="w-4 h-4" />
-                <p className="text-[#212121] font-normal text-base ml-2 leading-[24px]">
+                <p className="text-primary font-normal text-base ml-2 leading-6">
                   Save card for future payments
                 </p>
               </div>

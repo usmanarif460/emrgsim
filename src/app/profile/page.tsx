@@ -31,7 +31,7 @@ const TermsAndConditions = () => {
             height={48}
           />
           <div>
-            <p className="text-[#212121] text-base leading-[24px]">
+            <p className="text-primary text-base leading-6">
               Your current data plan:
             </p>
             <p className="font-medium">1GB · 3 days left</p>
@@ -44,15 +44,13 @@ const TermsAndConditions = () => {
               <p className="font-normal text-[22px] leading-[26px]">
                 {usedData}MB
               </p>
-              <p className="text-[#212121] text-base leading-[26px] ">used</p>
+              <p className="text-primary text-base leading-[26px] ">used</p>
             </div>
             <div>
               <p className="font-medium text-[22px] leading-[26px]">
                 {remainingData}MB
               </p>
-              <p className="text-[#212121] text-base leading-[26px]">
-                remaining
-              </p>
+              <p className="text-primary text-base leading-[26px]">remaining</p>
             </div>
           </div>
           {/* Progress Bar */}

@@ -24,30 +24,30 @@ const EID = () => {
       )}
 
       <div className="bg-white p-6 h-full rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-medium text-left text-[#212121]">
+        <h1 className="text-2xl font-medium text-left text-primary">
           Thanks for your order!
         </h1>
 
-        <h1 className="text-2xl mt-1 font-medium text-left text-[#212121] leading-[100%]">
+        <h1 className="text-2xl mt-1 font-medium text-left text-primary leading-[100%]">
           Just one little thing...
         </h1>
         <h2 className="mt-4 text-base text-left font-normal  leading-6">
           To install your eSIM you’ll need to complete the quick steps below
         </h2>
         <ol className="text-left mt-4 space-y-2">
-          <li className="text-base leading-7 text-[#212121]">
+          <li className="text-base leading-7 text-primary">
             1. Go to your phone <b>Settings</b>
           </li>
-          <li className="text-base leading-7 text-[#212121]">
+          <li className="text-base leading-7 text-primary">
             2. Select <b>General</b>, then <b>About</b>
           </li>
-          <li className="text-base leading-7 text-[#212121]">
+          <li className="text-base leading-7 text-primary">
             3. Scroll down and select <b>EID</b>
           </li>
-          <li className="text-base leading-7 text-[#212121]">
+          <li className="text-base leading-7 text-primary">
             4. Copy the EID (long hold to copy)
           </li>
-          <li className="text-base leading-7 text-[#212121]">
+          <li className="text-base leading-7 text-primary">
             5. Paste it below
           </li>
         </ol>
@@ -67,7 +67,7 @@ const EID = () => {
         >
           <input
             type="text"
-            className="px-6 py-3 rounded-md text-base w-full border-2 border-[#DADADA] placeholder:text-[#212121]"
+            className="px-6 py-3 rounded-md text-base w-full border-2 border-[#DADADA] placeholder:text-primary"
             placeholder="Enter EID"
             value={eid}
             onChange={(ev) => setEID(ev.target.value.trim())}

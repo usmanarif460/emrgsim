@@ -65,7 +65,7 @@ const DataPlans = () => {
         className="bg-gray-100 p-8 overflow-y-scroll h-[calc(100vh-72px)]"
         ref={productRef}
       >
-        <div className="text-left text-[24px] font-medium mb-4">
+        <div className="text-left text-6 font-medium mb-4">
           Select a data plan
         </div>
         {products.length === 0 ? (
@@ -77,7 +77,7 @@ const DataPlans = () => {
           <div className="space-y-4">
             {products.map((prod, i) => (
               <div
-                key={prod.id}
+                key={prod.id + i}
                 className={`flex items-center p-4 rounded-xl cursor-pointer transition border-2 ${
                   productIndex === i
                     ? "bg-[#EBF7F9] border-[#C0D7DB]"
@@ -102,9 +102,9 @@ const DataPlans = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex-3 text-base font-medium text-[#212121] leading-[164%]">
+                <div className="flex-3 text-base font-medium text-primary leading-[164%]">
                   {prod.data} {prod.data_unit}
-                  <p className="text-base text-[#212121] leading-[164%] font-normal">
+                  <p className="text-base text-primary leading-[164%] font-normal">
                     {prod.duration} {prod.duration_unit}
                   </p>
                 </div>
