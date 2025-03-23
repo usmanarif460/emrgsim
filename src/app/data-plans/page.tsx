@@ -65,7 +65,7 @@ const DataPlans = () => {
         className="bg-gray-100 p-8 overflow-y-scroll h-[calc(100vh-72px)]"
         ref={productRef}
       >
-        <div className="text-left text-6 font-medium mb-4">
+        <div className="text-left text-xl font-medium mb-4">
           Select a data plan
         </div>
         {products.length === 0 ? (
@@ -102,9 +102,9 @@ const DataPlans = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex-3 text-base font-medium text-primary leading-[164%]">
+                <div className="flex-3 text-base font-medium text-[#212121] leading-[164%]">
                   {prod.data} {prod.data_unit}
-                  <p className="text-base text-primary leading-[164%] font-normal">
+                  <p className="text-base text-[#212121] leading-[164%] font-normal">
                     {prod.duration} {prod.duration_unit}
                   </p>
                 </div>
