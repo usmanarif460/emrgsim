@@ -22,7 +22,7 @@ const TermsAndConditions = () => {
           alt=""
         />
       </div>
-      <div className="w-10/12 mx-auto max-w-md flex flex-col items-center gap-6 mt-8">
+      <div className="w-11/12 mx-auto max-w-md flex flex-col items-center gap-6 mt-8">
         <div className="flex w-11/12 items-start gap-4">
           <Image
             src="/assets/saudi/logo.png"
@@ -38,7 +38,7 @@ const TermsAndConditions = () => {
           </div>
         </div>
 
-        <div className="w-11/12 mx-auto border-2 border-[#C0D7DB] rounded-lg p-4 flex flex-col items-center">
+        <div className="w-11/12 mx-auto border-2 border-[#C0D7DB] rounded-xl px-8 py-6 flex flex-col items-center">
           <div className="w-full flex justify-between">
             <div>
               <p className="font-normal text-[22px] leading-[26px]">
