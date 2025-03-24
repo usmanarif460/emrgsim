@@ -22,7 +22,7 @@ const product = {
 
 const Purchase = () => {
   const router = useRouter();
-  const [processing, setProcessing] = useState(false);
+  const [processing, setProcessing] = useState(true);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ const Purchase = () => {
   return (
     <div className="h-screen w-screen overflow-y-auto bg-gray-100">
       {processing ? (
-        <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-gray-900 bg-opacity-90 text-white z-50">
+        <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-[#00539bed] bg-opacity-90 text-white z-50">
           <ImSpinner9 className="text-6xl animate-spin" />
           <h1 className="text-2xl font-medium mt-5">Payment Processing...</h1>
         </div>

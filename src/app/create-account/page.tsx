@@ -72,8 +72,9 @@ const Ad = () => {
   return (
     <div className="container w-full h-screen bg-white overflow-y-auto">
       <Header />
-      <div className="content py-8 px-6 h-auto">
-        <h1 className="text-3xl font-medium leading-[100%] mb-4 text-balance">
+
+      <div className="content py-[32px] px-[24px] h-auto">
+        <h1 className="text-[32px] font-medium leading-[100%] mb-4 w-[87.33%]">
           Cheap data bundles in minutes
         </h1>
         <p className="text-base mb-6 leading-6 font-normal tracking-normal">
@@ -82,7 +83,7 @@ const Ad = () => {
         <div className="buttons flex flex-col gap-[12px] mb-8">
           <ChoiceButton
             vector={<Sim />}
-            heading="Get a new EmrgSIM"
+            heading="Get a new eSIM"
             description="I’m new here and I’d like to get connected"
             onClick={() => setSelected("selected_1")}
             selected={selected === "selected_1"}
