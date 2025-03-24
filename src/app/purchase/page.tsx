@@ -133,7 +133,7 @@ const Purchase = () => {
             className="mt-6"
             onSubmit={(ev) => {
               ev.preventDefault();
-              router.push("/eid");
+              router.push("/thanks");
             }}
           >
             <div className="space-y-4">
