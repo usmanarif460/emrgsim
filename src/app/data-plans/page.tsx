@@ -65,7 +65,7 @@ const DataPlans = () => {
         className="bg-gray-100 p-8 overflow-y-scroll h-[calc(100vh-72px)]"
         ref={productRef}
       >
-        <h1 className="text-left text-2xl font-[550] mb-4">
+        <h1 className="text-left text-2xl font-semibold ">
           Select a data plan
         </h1>
         {products.length === 0 ? (
@@ -74,7 +74,7 @@ const DataPlans = () => {
             <h1 className="text-2xl font-medium mt-5">Loading...</h1>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-3 mt-8">
             {products.map((prod, i) => (
               <div
                 key={prod.id + i}
@@ -115,14 +115,13 @@ const DataPlans = () => {
             ))}
           </div>
         )}
-        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-4/5 text-center">
-          <div className="flex items-center justify-center w-full">
-            <Button
-              disabled={productIndex === -1}
-              text="Next"
-              onClick={() => router.push("/purchase")}
-            />
-          </div>
+
+        <div className="flex items-center justify-center w-full mt-12">
+          <Button
+            disabled={productIndex === -1}
+            text="Next"
+            onClick={() => router.push("/purchase")}
+          />
         </div>
       </div>
     </div>
