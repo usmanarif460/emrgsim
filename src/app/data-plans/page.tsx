@@ -65,16 +65,16 @@ const DataPlans = () => {
         className="bg-gray-100 p-8 overflow-y-scroll h-[calc(100vh-72px)]"
         ref={productRef}
       >
-        <div className="text-left text-xl font-medium mb-4">
+        <h1 className="text-left text-2xl font-[550] mb-4">
           Select a data plan
-        </div>
+        </h1>
         {products.length === 0 ? (
           <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-gray-900 bg-opacity-90 text-white">
             <ImSpinner9 className="text-6xl animate-spin" />
             <h1 className="text-2xl font-medium mt-5">Loading...</h1>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {products.map((prod, i) => (
               <div
                 key={prod.id + i}
@@ -94,7 +94,7 @@ const DataPlans = () => {
                   />
                   <div
                     className={`w-6 h-6 rounded-full border-2 border-[#D6E8EB] flex items-center justify-center transition ${
-                      productIndex === i ? "bg-[#EBF7F9] " : "border-[#D6E8EB]"
+                      productIndex === i ? "bg-[#D6E8EB] " : "border-[#D6E8EB]"
                     }`}
                   >
                     {productIndex === i && (
@@ -102,13 +102,13 @@ const DataPlans = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex-3 text-base font-medium text-[#212121] leading-[164%]">
+                <div className="flex-3 text-base font-[550] text-[#212121] leading-[164%]">
                   {prod.data} {prod.data_unit}
                   <p className="text-base text-[#212121] leading-[164%] font-normal">
                     {prod.duration} {prod.duration_unit}
                   </p>
                 </div>
-                <p className="flex-1 text-base leading-[164%] font-medium">
+                <p className="flex-1 text-base leading-[164%] font-[550]">
                   ${prod.price}
                 </p>
               </div>

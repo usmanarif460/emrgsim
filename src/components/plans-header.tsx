@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const PlansHeader = () => {
   return (
-    <div className="relative h-[14rem] flex items-center justify-center bg-[#D6E8EB]">
+    <div className="relative h-[15.3rem] flex items-center justify-center bg-[#D6E8EB]">
       <Image
         src="/assets/saudi/new-group.png"
         alt=""
