@@ -22,7 +22,7 @@ const product = {
 
 const Purchase = () => {
   const router = useRouter();
-  const [processing, setProcessing] = useState(true);
+  const [processing, setProcessing] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
   useEffect(() => {
@@ -108,7 +108,7 @@ const Purchase = () => {
                 <p>${(product.price * 1.15).toFixed(2)}</p>
               </div>
             </div>
-            <h2 className="text-lg font-medium leading-[164%]">
+            <h2 className="text-lg font-[550] leading-[164%]">
               Select Payment Method
             </h2>
             <div className="space-y-3 mt-3">
@@ -136,14 +136,16 @@ const Purchase = () => {
                       <div className="w-[10px] h-[10px] bg-[#00539B] rounded-full"></div>
                     )}
                   </div>
-                  <Image
-                    src={method.img}
-                    alt={method.label}
-                    width={40}
-                    height={40}
-                    className="mr-3"
-                  />
-                  <p className="text-primary text-base leading-[164%]">
+                  <div className="w-9 h-6">
+                    <Image
+                      src={method.img}
+                      alt={method.label}
+                      width={40}
+                      height={40}
+                      className="mr-3"
+                    />
+                  </div>
+                  <p className="text-primary ml-2 font-normal text-base leading-[164%]">
                     {method.label}
                   </p>
                 </label>

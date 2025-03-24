@@ -146,7 +146,9 @@ const TermsAndConditions = () => {
     <div className="relative h-screen bg-white flex flex-col">
       <HeaderTerms />
       <div className="flex-1 overflow-y-auto p-6 box-border">
-        <h1 className="text-2xl font-medium">Terms and Conditions</h1>
+        <h1 className="text-2xl font-[550] leading-[100%]">
+          Terms and Conditions
+        </h1>
         <div className="flex flex-col gap-10 mt-3">
           <p className="text-primary text-base leading-[164%] font-normal">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -201,7 +203,7 @@ const TermsAndConditions = () => {
             onClick={() => router.push("/data-plans")}
           />
         </div>
-        <p className="mt-4 text-primary font-medium text-base cursor-pointer">
+        <p className="mt-4 text-primary font-[550] leading-[26px] text-base cursor-pointer">
           I disagree
         </p>
       </div>

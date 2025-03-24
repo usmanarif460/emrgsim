@@ -103,10 +103,10 @@ const Thanks = () => {
             />
           </div>
           <div className="flex p-4 flex-col items-center text-center gap-2 w-full ">
-            <h3 className="text-2xl font-medium text-center leading-[149%]">
+            <h3 className="text-2xl text-primary font-[550] text-center leading-[149%]">
               Success!
             </h3>
-            <p className="text-base text-gray-700">
+            <p className="text-base text-primary leading-[149%] text-center">
               Your eSIM is ready. Please click the link below to install it.
             </p>
 

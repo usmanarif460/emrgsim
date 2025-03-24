@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const PurchaseHeader = () => {
   return (
-    <div>
+    <div className="bg-[#D6E8EB]">
       <Image
         width={5000}
         height={5000}
