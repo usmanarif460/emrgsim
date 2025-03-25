@@ -57,7 +57,7 @@ const Purchase = () => {
   };
 
   return (
-    <div className="h-screen w-screen overflow-y-auto bg-gray-100">
+    <div className="h-auto w-screen overflow-y-auto bg-gray-100">
       {processing ? (
         <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-[#00539b] text-white z-50">
           <div role="status">
