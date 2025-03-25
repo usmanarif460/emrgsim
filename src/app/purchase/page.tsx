@@ -5,23 +5,12 @@ import Image from "next/image";
 import PurchaseHeader from "@/components/header-purchase";
 import Button from "@/components/button";
 import { useRouter } from "next/navigation";
-
-const product = {
-  id: "NRMshvhs7EjyYdn-2obO7bu_7NzAeNmGWhTvX8_CYVo=",
-  name: "string",
-  sim_types: ["ESIM"],
-  duration: 1,
-  duration_unit: "DAYS",
-  data: 1,
-  data_unit: "GB",
-  price: 20,
-  price_currency: "$",
-  footprint_code: "string",
-};
+import { useDataPlanStore } from "@/stores/dataStore"; // Import Zustand store
 
 const Purchase = () => {
   const router = useRouter();
   const [processing, setProcessing] = useState(false);
+  const { selectedPlan } = useDataPlanStore();
   const [selectedPayment, setSelectedPayment] = useState<string | null>(null);
 
   useEffect(() => {
@@ -105,11 +94,11 @@ const Purchase = () => {
             <div className="border-b-2 border-[#EFEFEF] pb-4 font-medium mb-4 mt-3">
               <div className="flex justify-between">
                 <p className="text-base font-normal leading-[164%] text-primary">
-                  {product.data} {product.data_unit} ({product.duration}{" "}
-                  {product.duration_unit})
+                  {selectedPlan?.data} {selectedPlan?.data_unit} (
+                  {selectedPlan?.duration} {selectedPlan?.duration_unit})
                 </p>
                 <p className="font-medium text-base leading-[164%] text-primary">
-                  ${product.price}
+                  ${selectedPlan?.price}
                 </p>
               </div>
               <div className="flex justify-between text-primary">
@@ -117,12 +106,16 @@ const Purchase = () => {
                   Tax
                 </p>
                 <p className="font-medium text-base leading-[164%] text-primary">
-                  ${(product.price * 0.15).toFixed(2)}
+                  $
+                  {(selectedPlan?.price
+                    ? selectedPlan.price * 0.15
+                    : 0
+                  ).toFixed(2)}
                 </p>
               </div>
               <div className="flex justify-between font-semibold text-lg text-[#00539B] mt-2">
                 <p>Total</p>
-                <p>${(product.price * 1.15).toFixed(2)}</p>
+                <p>${((selectedPlan?.price ?? 0) * 1.15).toFixed(2)}</p>
               </div>
             </div>
             <h2 className="text-lg font-[550] leading-[164%]">

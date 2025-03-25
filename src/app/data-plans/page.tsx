@@ -2,21 +2,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ImSpinner9 } from "react-icons/im";
+import { useDataPlanStore } from "@/stores/dataStore"; // Import Zustand store
 import Product from "@/types/product";
-import { international } from "@/language";
 import common from "@/language/english/common.json";
 import PlansHeader from "@/components/plans-header";
 import Button from "@/components/button";
 
 const DataPlans = () => {
   const router = useRouter();
+  const { setSelectedPlan } = useDataPlanStore(); // Use Zustand store
   const [productIndex, setProductIndex] = useState(-1);
   const productRef = useRef(null);
 
-  // Dummy products list
   const [products] = useState<Product[]>([
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
+      id: "plan1",
       name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 3,
@@ -28,8 +28,8 @@ const DataPlans = () => {
       footprint_code: "USA",
     },
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7Lbud123FBShHmFR2f02qo=",
-      name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
+      id: "plan2",
+      name: "500MB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 14,
       duration_unit: "days",
@@ -40,8 +40,8 @@ const DataPlans = () => {
       footprint_code: "USA",
     },
     {
-      id: "69YtBXSZ2pP1jm1aR3Qo0A5g7LbudFBShHmFR2f02qo=",
-      name: "100MB 30-Days - ConnectAPITest - Local USA Data Bundle",
+      id: "plan3",
+      name: "1GB 30-Days - ConnectAPITest - Local USA Data Bundle",
       sim_types: ["ESIM"],
       duration: 14,
       duration_unit: "days",
@@ -65,9 +65,7 @@ const DataPlans = () => {
         className="bg-gray-100 p-8 overflow-y-scroll h-[calc(100vh-72px)]"
         ref={productRef}
       >
-        <h1 className="text-left text-2xl font-semibold ">
-          Select a data plan
-        </h1>
+        <h1 className="text-left text-2xl font-semibold">Select a data plan</h1>
         {products.length === 0 ? (
           <div className="fixed h-screen w-screen flex flex-col items-center justify-center bg-gray-900 bg-opacity-90 text-white">
             <ImSpinner9 className="text-6xl animate-spin" />
@@ -77,24 +75,27 @@ const DataPlans = () => {
           <div className="space-y-3 mt-8">
             {products.map((prod, i) => (
               <div
-                key={prod.id + i}
+                key={prod.id}
                 className={`flex items-center p-4 rounded-xl cursor-pointer transition border-2 ${
                   productIndex === i
-                    ? "bg-[#EBF7F9] border-[#C0D7DB] shadow-none"
-                    : "bg-white shadow-[1px_1px_10px_0px_#0000001A] border-transparent"
+                    ? "bg-[#EBF7F9] border-[#C0D7DB]"
+                    : "bg-white shadow-md border-transparent"
                 }`}
-                onClick={() => setProductIndex(i)}
+                onClick={() => {
+                  setProductIndex(i);
+                  setSelectedPlan(prod); // Store selected plan in Zustand
+                }}
               >
                 <div className="flex-1 text-center">
                   <input
                     type="radio"
                     checked={productIndex === i}
-                    className="hidden"
                     onChange={() => setProductIndex(i)}
+                    className="hidden"
                   />
                   <div
-                    className={`w-6 h-6 rounded-full border-2 border-[#D6E8EB] flex items-center justify-center transition ${
-                      productIndex === i ? "bg-[#D6E8EB] " : "border-[#D6E8EB]"
+                    className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition ${
+                      productIndex === i ? "bg-[#D6E8EB]" : "border-[#D6E8EB]"
                     }`}
                   >
                     {productIndex === i && (
@@ -102,15 +103,13 @@ const DataPlans = () => {
                     )}
                   </div>
                 </div>
-                <div className="flex-3 text-base font-[550] text-[#212121] leading-[164%]">
+                <div className="flex-3 text-base font-semibold text-[#212121]">
                   {prod.data} {prod.data_unit}
-                  <p className="text-base text-[#212121] leading-[164%] font-normal">
+                  <p className="text-base text-[#212121] font-normal">
                     {prod.duration} {prod.duration_unit}
                   </p>
                 </div>
-                <p className="flex-1 text-base leading-[164%] font-[550]">
-                  ${prod.price}
-                </p>
+                <p className="flex-1 text-base font-semibold">${prod.price}</p>
               </div>
             ))}
           </div>
@@ -129,3 +128,9 @@ const DataPlans = () => {
 };
 
 export default DataPlans;
+function international(EmrgMobile: {
+  value: string;
+  description: string;
+}): string {
+  return EmrgMobile.value;
+}
