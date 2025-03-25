@@ -173,7 +173,7 @@ const TermsAndConditions = () => {
         <div className="w-full flex items-end justify-end">
           <canvas
             ref={canvasRef}
-            className="h-28 w-full border-b border-gray-300"
+            className="h-36 w-full border-b border-gray-300"
             onMouseDown={(ev) =>
               startDrawing(getCanvasPoint(mousePosition(ev)))
             }

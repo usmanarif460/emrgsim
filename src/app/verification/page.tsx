@@ -20,9 +20,8 @@ const Verification = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Generate the OTP and get the updated value
     const newOTP = Math.floor(100000 + Math.random() * 900000).toString();
-    useOTPStore.setState({ otp: newOTP }); // Manually update Zustand store
+    useOTPStore.setState({ otp: newOTP });
 
     try {
       await sendMail({
@@ -30,32 +29,8 @@ const Verification = () => {
         sendTo: `${email}`,
         text: `Your verification code is ${newOTP}`,
         subject: "Verification",
-        html: `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMRGSim OTP Verification</title>
-    <style>
-        body { font-family: Arial, sans-serif; color: #333; }
-        .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; text-align: center; }
-        .otp { font-size: 24px; font-weight: bold; color: #ff6600; }
-        .footer { margin-top: 20px; font-size: 12px; color: #777; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>EMRGSim OTP Verification</h2>
-        <p>Use the OTP below to verify your email:</p>
-        <p class="otp">${newOTP}</p>
-        <p>This OTP is valid for <strong>10 minutes</strong>.</p>
-        <p>If you didn’t request this, please ignore this email.</p>
-        <div class="footer">© 2024 EMRGSim. All rights reserved.</div>
-    </div>
-</body>
-</html>`,
+        html: `<p>Your verification code is <strong>${newOTP}</strong></p>`,
       });
-
       toast.success("OTP sent successfully!");
     } catch (error) {
       toast.error("Failed to send OTP");
@@ -70,12 +45,6 @@ const Verification = () => {
     inputRefs.current[0]?.focus();
   }, []);
 
-  useEffect(() => {
-    if (!verification.includes("")) {
-      inputRefs.current[verification.indexOf("")]?.focus();
-    }
-  }, [verification]);
-
   const handleChange = (index: number, value: string) => {
     if (value === "" || /^[0-9]$/.test(value)) {
       setVerification((prev) => {
@@ -84,10 +53,19 @@ const Verification = () => {
         return updated;
       });
 
-      // Move to the next input field if the current input is valid
       if (value !== "" && index < inputRefs.current.length - 1) {
         inputRefs.current[index + 1]?.focus();
       }
+    }
+  };
+
+  const handlePaste = (ev: React.ClipboardEvent<HTMLInputElement>) => {
+    ev.preventDefault();
+    const pasteData = ev.clipboardData.getData("text").trim();
+
+    if (/^\d{6}$/.test(pasteData)) {
+      setVerification(pasteData.split(""));
+      inputRefs.current[5]?.focus();
     }
   };
 
@@ -148,6 +126,7 @@ const Verification = () => {
               value={verification[i]}
               onChange={(e) => handleChange(i, e.target.value)}
               onKeyDown={(e) => handleKeyDown(i, e)}
+              onPaste={i === 0 ? handlePaste : undefined}
             />
           ))}
         </div>
