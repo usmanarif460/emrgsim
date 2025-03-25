@@ -145,7 +145,7 @@ const TermsAndConditions = () => {
   return (
     <div className="relative h-screen bg-white flex flex-col">
       <HeaderTerms />
-      <div className="flex-1 overflow-y-auto p-6 box-border">
+      <div className=" overflow-y-auto p-6 box-border">
         <h1 className="text-2xl font-[550] leading-[100%]">
           Terms and Conditions
         </h1>
