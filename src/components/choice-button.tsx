@@ -28,7 +28,7 @@ export default function ChoiceButton({
           {vector}
         </div>
         <div className="flex flex-col gap-1 ml-3 flex-1">
-          <h4 className="text-base font-semibold  text-left leading-[164%] text-primary self-start">
+          <h4 className="text-base font-medium  text-left leading-[164%] text-primary self-start">
             {heading}
           </h4>
           <p className="text-sm font-normal text-left leading-[134%] text-primary self-start w-[83.33%]">
