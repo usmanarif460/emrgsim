@@ -13,7 +13,7 @@ const Page = () => {
       >
         <Logo />
       </div>
-      <h1 className="text-3xl text-white">GlobalConnect</h1>
+      <h1 className="text-3xl text-white font-semibold">GlobalConnect</h1>
       <p className="text-sm text-white">
         POWERED BY <strong>EMRGSIM</strong>
       </p>
