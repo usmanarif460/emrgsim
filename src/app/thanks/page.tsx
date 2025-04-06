@@ -1,10 +1,7 @@
 "use client";
-
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Header from "@/components/header";
-import { useRouter } from "next/navigation";
-
 const Thanks = () => {
   const product = {
     id: "NRMshvhs7EjyYdn-2obO7bu_7NzAeNmGWhTvX8_CYVo=",
@@ -19,7 +16,6 @@ const Thanks = () => {
     footprint_code: "string",
   };
   const [timeoutCount, setTimeoutCount] = useState(0);
-  const router = useRouter();
 
   const sendEID = useCallback(
     (bypass?: boolean) => {
@@ -112,7 +108,12 @@ const Thanks = () => {
 
             <button
               type="button"
-              onClick={() => router.push("/profile")}
+              onClick={() =>
+                window.open(
+                  "https://esimsetup.apple.com/esim_qrcode_provisioning?carddata=LPA:1$stc.prod.smdpplus.stc.com.sa$B4CD9E5B67506E0FB7FCF4C9DF32F8E8F6B6BBE1E4C2B7D861D2A6C54A883A6B",
+                  "_blank"
+                )
+              }
               className="bg-[#00539B] w-full text-white py-4 px-4 text-lg font-semibold rounded-2xl mt-4 hover:bg-blue-600"
             >
               Install eSIM
