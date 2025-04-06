@@ -25,7 +25,7 @@ const Verification = () => {
 
     try {
       await sendMail({
-        email: "usmanarif460@gmail.com",
+        email: "verify@emrgsim.com",
         sendTo: `${email}`,
         text: `Your verification code is ${newOTP}`,
         subject: "Verification",
