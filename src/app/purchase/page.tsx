@@ -51,9 +51,8 @@ const Purchase = () => {
 
     // Simulate a delay for processing
     setTimeout(() => {
-      setProcessing(false);
-      router.push("/thanks");
-    }, 5000);
+      router.push("/thanks"); // Navigate to the thanks page
+    }, 5000); // Keep the processing state until navigation is complete
   };
 
   return (
